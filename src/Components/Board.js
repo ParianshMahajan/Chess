@@ -1,3 +1,6 @@
+import Square from "./square"
+
+
 
 let square=[]
 let x=1
@@ -52,7 +55,7 @@ export default function Board(){
             <ul className='list'>
                 {square.map((i)=>{return(
                     <>
-                    <li className={i.className}>{i.id[0]},{i.id[1]}</li>
+                    < Square classname={i.className} position={i.id}  />
                     </>
                 )})}     
             </ul>

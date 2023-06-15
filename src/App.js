@@ -1,4 +1,4 @@
-import Board from "./Components/Board/Board";
+import Board from "./Components/Board";
 import './App.css'
 
 
