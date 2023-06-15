@@ -1,0 +1,91 @@
+body{
+    background-color: rgb(43, 43, 43);
+}
+
+.Board{
+    background-color: rgb(26, 26, 26);
+    margin: 3% 0 0 27.5%;
+    width: 45%;
+    aspect-ratio: 1.23/1;
+    padding: 0%;
+    padding-top:1% ;
+    padding-right: .5%;
+    padding-bottom: .3%;
+}
+
+
+
+
+
+
+
+.Labels{
+    color: white;
+    font-size: 22px;
+    width: 11.8%;
+}
+
+ul{
+    list-style: none;
+}
+
+.nums{
+    display: flex;
+    flex-direction: column-reverse;
+    margin-top: 5%;
+    float: left;
+    margin-right: 3%;
+}
+
+
+.nums .Labels{
+    margin:258% 0 258% 0%; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.list{
+    margin:0%;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5% 3.9% 0% 0%;
+}
+
+
+
+.BlackSquare,.WhiteSquare{
+    width: 12%;
+    aspect-ratio: 1/1;
+}
+
+.WhiteSquare{
+    background-color: rgb(241, 226, 192);
+}
+
+
+.BlackSquare{
+    background-color: rgb(83, 150, 63);
+}
+
+.Alpha{
+    display: flex;
+    margin:0% ;
+    margin-top: 1.5%;
+    padding-left: 0%;
+    padding-bottom: 3%;
+}
+
+.Alpha .Labels{
+    text-align: center;
+}
