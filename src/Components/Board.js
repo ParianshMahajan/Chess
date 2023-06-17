@@ -45,13 +45,12 @@ for(var i=1;i<=8;i++){
 
 export default function Board(){
 
-    let newlink=require("../Pieces/BPawn.png")
+    let newlink=require("../Pieces/Button.png")
 
     const[highlight,sethighlight]=useState([]);
-    function settinglink(id){
-        let pos=id.target.id
-        console.log(typeof(pos));
-        sethighlight(button('G1','Knight'))
+    function settinglink(id,name){
+        console.log(name);
+        sethighlight(button(id,name))
 
     }       
     return(
@@ -82,7 +81,7 @@ export default function Board(){
                 }
                     return(
                     <>
-                    < Square classname={i.className} position={i.id} link={link} name={initial(i.id)[1]} button={(id)=>settinglink(id)} />
+                    < Square classname={i.className} position={i.id} link={link} name={initial(i.id)[1]} button={(id,name)=>settinglink(id,name)} />
                     </>
                 )})}     
             </ul>

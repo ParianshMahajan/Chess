@@ -63,11 +63,6 @@ ul{
 
 
 
-.BlackSquare,.WhiteSquare{
-    width: 12%;
-    aspect-ratio: 1/1;
-}
-
 .WhiteSquare{
     background-color: rgb(241, 226, 192);
 }
@@ -75,6 +70,12 @@ ul{
 
 .BlackSquare{
     background-color: rgb(83, 150, 63);
+}
+
+.BlackSquare,.WhiteSquare{
+    width: 12%;
+    aspect-ratio: 1/1;
+    padding: 0%;
 }
 
 .Alpha{
@@ -95,6 +96,7 @@ ul{
 .img{
     object-position:center;
     width:95%;
+    margin: 10% 6% 5% 3%;
 }
 
 

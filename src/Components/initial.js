@@ -11,11 +11,11 @@ export default function initial(position){
         let piece=""
         
         if (position[1]==2){
-            piece="Pawn"
+            piece="WPawn"
             link= require("../Pieces/WPawn.png")
         }
         else if(position[1]==7){
-            piece="Pawn"
+            piece="BPawn"
             link= require("../Pieces/BPawn.png")
         }
         else if((position[0]=='A'||position[0]=='H')&&(position[1]==1||position[1]==8)){

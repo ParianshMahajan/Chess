@@ -9,14 +9,14 @@ export default function Square(props){
     
     let id=`${props.position[0]}${props.position[1]}`
 
-    function button(id){
-        props.button(id)
+    function button(){
+        props.button(id,props.name)
     }
 
     return(
         <>
         <li className={props.classname}>
-            <button className="img-bttn" id={id}  onClick={(id)=>button(id)}>
+            <button className="img-bttn" id={id}  onClick={()=>button()}>
             <img src={link} alt="" className="img"/>
             </button>
         </li>
