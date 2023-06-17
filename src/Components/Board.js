@@ -1,4 +1,8 @@
 import Square from "./square"
+import initial from "./initial";
+import button from "./Button";
+import { useState } from "react";
+
 
 
 
@@ -40,6 +44,16 @@ for(var i=1;i<=8;i++){
 
 
 export default function Board(){
+
+    let newlink=require("../Pieces/BPawn.png")
+
+    const[highlight,sethighlight]=useState([]);
+    function settinglink(id){
+        let pos=id.target.id
+        console.log(typeof(pos));
+        sethighlight(button('G1','Knight'))
+
+    }       
     return(
         <div className="Board">
         
@@ -53,9 +67,22 @@ export default function Board(){
 
 
             <ul className='list'>
-                {square.map((i)=>{return(
+                {square.map((i)=>{
+
+                let link=initial(i.id)[0]    
+                let pos=`${(i.id)[0]}${(i.id)[1]}`
+
+                
+                if(highlight!=[]){
+                    highlight.map((e)=>{
+                        if(e==pos&&link==""){
+                            link=newlink
+                        }
+                    })
+                }
+                    return(
                     <>
-                    < Square classname={i.className} position={i.id}  />
+                    < Square classname={i.className} position={i.id} link={link} name={initial(i.id)[1]} button={(id)=>settinglink(id)} />
                     </>
                 )})}     
             </ul>

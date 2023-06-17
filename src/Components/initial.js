@@ -1,36 +1,44 @@
-export default function initial(props){
+export default function initial(position){
         //Initially
         let color=" "
-        if(props.position[1]==1){
+        if(position[1]==1){
             color='W'
         }
-        else if(props.position[1]==8){
+        else if(position[1]==8){
             color='B'
         }
         let link=""
+        let piece=""
         
-        if (props.position[1]==2){
+        if (position[1]==2){
+            piece="Pawn"
             link= require("../Pieces/WPawn.png")
         }
-        else if(props.position[1]==7){
+        else if(position[1]==7){
+            piece="Pawn"
             link= require("../Pieces/BPawn.png")
         }
-        else if((props.position[0]=='A'||props.position[0]=='H')&&(props.position[1]==1||props.position[1]==8)){
+        else if((position[0]=='A'||position[0]=='H')&&(position[1]==1||position[1]==8)){
             link= require(`../Pieces/${color}Rook.png`)
+            piece="Rook"
         }
-        else if((props.position[0]=='B'||props.position[0]=='G')&&(props.position[1]==1||props.position[1]==8)){
+        else if((position[0]=='B'||position[0]=='G')&&(position[1]==1||position[1]==8)){
             link= require(`../Pieces/${color}Knight.png`)
+            piece="Knight"
         }
-        else if((props.position[0]=='C'||props.position[0]=='F')&&(props.position[1]==1||props.position[1]==8)){
+        else if((position[0]=='C'||position[0]=='F')&&(position[1]==1||position[1]==8)){
             link= require(`../Pieces/${color}Bishop.png`)
+            piece="Bishop"
         }
-        else if(props.position[0]=='D'&&(props.position[1]==1||props.position[1]==8)){
+        else if(position[0]=='D'&&(position[1]==1||position[1]==8)){
             link= require(`../Pieces/${color}Queen.png`)
+            piece="Queen"
         }
-        else if(props.position[0]=='E'&&(props.position[1]==1||props.position[1]==8)){
+        else if(position[0]=='E'&&(position[1]==1||position[1]==8)){
             link= require(`../Pieces/${color}King.png`)
+            piece="King"
         }
-        return(link)
+        return([link,piece])
 }
 
 
