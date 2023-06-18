@@ -1,4 +1,4 @@
-import initial from "./initial"
+import initial from "./Const Data/initial"
 
 let Position=[]
 

@@ -22,14 +22,6 @@ export default function button(id,name){
     else if(name=="King"){
         return(Pieces.King.id.move(id))
     }
-    
-    
-    
-    
-    
-    
-    
-    
     else{
         return([])
     }

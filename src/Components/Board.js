@@ -1,6 +1,6 @@
 import Square from "./square"
-import initial from "./initial";
-import button from "./Button";
+import initial from "./Const Data/initial";
+import button from "./Const Data/Button";
 import { useState } from "react";
 import { update,updated,getname } from "./Updated";
 

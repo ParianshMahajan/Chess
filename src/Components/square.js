@@ -1,5 +1,5 @@
 import { useState } from "react";
-import initial from "./initial";
+import initial from "./Const Data/initial";
 
 export default function Square(props){
     

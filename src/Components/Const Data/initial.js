@@ -12,30 +12,30 @@ export default function initial(position){
         
         if (position[1]==2){
             piece="WPawn"
-            link= require("../Pieces/WPawn.png")
+            link= require("../../Pieces/WPawn.png")
         }
         else if(position[1]==7){
             piece="BPawn"
-            link= require("../Pieces/BPawn.png")
+            link= require("../../Pieces/BPawn.png")
         }
         else if((position[0]=='A'||position[0]=='H')&&(position[1]==1||position[1]==8)){
-            link= require(`../Pieces/${color}Rook.png`)
+            link= require(`../../Pieces/${color}Rook.png`)
             piece="Rook"
         }
         else if((position[0]=='B'||position[0]=='G')&&(position[1]==1||position[1]==8)){
-            link= require(`../Pieces/${color}Knight.png`)
+            link= require(`../../Pieces/${color}Knight.png`)
             piece="Knight"
         }
         else if((position[0]=='C'||position[0]=='F')&&(position[1]==1||position[1]==8)){
-            link= require(`../Pieces/${color}Bishop.png`)
+            link= require(`../../Pieces/${color}Bishop.png`)
             piece="Bishop"
         }
         else if(position[0]=='D'&&(position[1]==1||position[1]==8)){
-            link= require(`../Pieces/${color}Queen.png`)
+            link= require(`../../Pieces/${color}Queen.png`)
             piece="Queen"
         }
         else if(position[0]=='E'&&(position[1]==1||position[1]==8)){
-            link= require(`../Pieces/${color}King.png`)
+            link= require(`../../Pieces/${color}King.png`)
             piece="King"
         }
         return([link,piece])
