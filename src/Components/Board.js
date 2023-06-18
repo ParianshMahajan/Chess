@@ -95,6 +95,7 @@ export default function Board(){
 
 
                 if(off==1&&highlight!=[]){
+                    console.log(highlight);
                     highlight.map((e)=>{
                         if(e==pos&&link==""){
                             link=newlink
