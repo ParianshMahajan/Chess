@@ -11,6 +11,7 @@ body{
     padding-top:1% ;
     padding-right: .5%;
     padding-bottom: .3%;
+    
 }
 
 
@@ -39,7 +40,7 @@ ul{
 
 
 .nums .Labels{
-    margin:258% 0 258% 0%; 
+    margin:253% 0 253% 0%; 
 }
 
 
@@ -76,6 +77,7 @@ ul{
     width: 12%;
     aspect-ratio: 1/1;
     padding: 0%;
+    position: relative;
 }
 
 .Alpha{
@@ -88,21 +90,36 @@ ul{
 
 .Alpha .Labels{
     text-align: center;
+    width: 11.6%;
 }
-
-
-
-
-.img{
-    object-position:center;
-    width:95%;
-    margin: 10% 6% 5% 3%;
-}
-
 
 
 .img-bttn{
-    background: none;
+    margin: 0%;
+    padding: 0%;
+    background: blue;
     border: none;
     cursor: pointer;
 }
+
+
+.img{
+    width:80%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 10% 0 0 10%;
+}
+
+.highlight-Piece{
+    object-position:center;
+    position: absolute;
+    width:100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+

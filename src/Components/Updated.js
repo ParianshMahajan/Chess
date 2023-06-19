@@ -12,7 +12,7 @@ for(let i=0;i<64;i++){
     Position.push({
         link:initial([String.fromCharCode(al_id),val_id])[0],
         position:`${([String.fromCharCode(al_id),val_id])[0]}${([String.fromCharCode(al_id),val_id])[1]}`,
-        name:initial([String.fromCharCode(al_id),val_id])[1]
+        name:initial([String.fromCharCode(al_id),val_id])[1],
     })
     al_id+=1
 }

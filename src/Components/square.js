@@ -4,26 +4,45 @@ import initial from "./Const Data/initial";
 export default function Square(props){
     
     let link=props.link
-    let newlink=require("../Pieces/Button.png")
+    let newlink=require("../Pieces/Highlight.png")
     let piece=initial(props)[1];
     
+
     let id=`${props.position[0]}${props.position[1]}`
 
+
     function button(e){
-        if(link==newlink){
-            props.movep(id,props.previd,props.prevlink);
-        }
-        else{
-            props.button(id,props.name,link)
-            // console.log(id,props.name,link);
-        }
+        console.log(link[14],"   ",link);
+            if(link==newlink){
+                props.movep(id,props.previd,props.prevlink);
+            }
+            else{
+                props.button(id,props.name,link)
+            }
+        
     }
+
+    
+
+
+
+
+
+
+    //css
+    let imgClass="img";
+    if(link==newlink){
+        imgClass="highlight-Piece"
+    }
+
+
 
     return(
         <>
         <li className={props.classname}>
             <button className="img-bttn" id={id}  onClick={(e)=>button(e)}>
-            <img src={link} alt="" className="img"/>
+                <img src={props.highlightPiece} alt="" className="highlight-Piece"/>
+                <img src={link} alt="" className={imgClass}/>
             </button>
         </li>
         </>

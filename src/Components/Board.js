@@ -45,7 +45,7 @@ for(var i=1;i<=8;i++){
 
 export default function Board(){
 
-    let newlink=require("../Pieces/Button.png")
+    let newlink=require("../Pieces/Highlight.png")
     const[highlight,sethighlight]=useState([]);
     const[off,setOff]=useState(0);
     const[previd,setPrev]=useState("Null");    //To send data
@@ -56,22 +56,45 @@ export default function Board(){
     const[target,setTarget]=useState("");
     const[piece,setPiece]=useState("Null");
 
+
+    //Turn
+    const [turn,setTurn]=useState("W")
+
+
+
     function showButtons(id,name,link){
-        sethighlight(button(id,name))
-        setOff(1)
-        setMove("Null")
-        setfrom("Null")
-        setPrev(id)
-        setPrevlink(link)
-        setPiece(name)
+        if(link[14]==turn){
+            sethighlight(button(id,name))
+            setOff(1)
+            setMove("Null")
+            setfrom("Null")
+            setPrev(id)
+            setPrevlink(link)
+            setPiece(name)
+        }
     }
 
     function movep(id,id_prev,link){
-            setOff(0)
-            setfrom(id_prev)
-            setMove(id)
-            setTarget(link)
+            if(link[14]==turn){
+
+                if(link[14]=="W"){
+                    setTurn("B")
+                }
+                else if(link[14]=="B"){
+                    setTurn("W")
+                }
+
+                setOff(0)
+                setfrom(id_prev)
+                setMove(id)
+                setTarget(link)
+            }
     }
+
+
+
+
+    
 
     return(
         <div className="Board">
@@ -91,14 +114,19 @@ export default function Board(){
                 let pos=`${(i.id)[0]}${(i.id)[1]}`
                 let link=updated(pos)
                 let name=getname(pos)
+                let highlightPiece=""
 
-
-
+                    
                 if(off==1&&highlight!=[]){
-                    console.log(highlight);
                     highlight.map((e)=>{
-                        if(e==pos&&link==""){
-                            link=newlink
+                        if(e==pos){
+                            if(link==""){
+                                link=newlink
+                            }
+                            else if(link[14]=='B'){
+                                console.log("Bingoo");
+                                highlightPiece=newlink
+                            }
                         }
                     })
                 }
@@ -130,6 +158,7 @@ export default function Board(){
                         button={(id,name,link)=>showButtons(id,name,link)}
                         movep={(id,id_prev,link,name)=>movep(id,id_prev,link,name)}
                         prevlink={prevlink}
+                        highlightPiece={highlightPiece}
                     />
                     </>
                 )})}
