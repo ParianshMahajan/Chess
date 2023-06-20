@@ -5,14 +5,14 @@ const Pieces={
                  let num=parseInt(position[1])
                 return(
                     [
-                        `${String.fromCharCode(alpha+2)}${num+1}`,
+                        [`${String.fromCharCode(alpha+2)}${num+1}`,
                         `${String.fromCharCode(alpha+2)}${num-1}`,
                         `${String.fromCharCode(alpha-2)}${num+1}`,
                         `${String.fromCharCode(alpha-2)}${num-1}`,
                         `${String.fromCharCode(alpha+1)}${num-2}`,
                         `${String.fromCharCode(alpha-1)}${num-2}`,
                         `${String.fromCharCode(alpha+1)}${num+2}`,
-                        `${String.fromCharCode(alpha-1)}${num+2}`,
+                        `${String.fromCharCode(alpha-1)}${num+2}`,]
                     ]     
                 )
             }}
@@ -25,17 +25,17 @@ const Pieces={
                  if(num==2){
                      
                      return(
-                         [
+                         [[
                              `${String.fromCharCode(alpha)}${num+1}`,
                              `${String.fromCharCode(alpha)}${num+2}`,
-                            ]     
+                         ]]     
                             )
                     }
                  else{
                     return(
-                        [
+                        [[
                             `${String.fromCharCode(alpha)}${num+1}`,
-                           ]     
+                        ]]     
                     )
                  }
                 }}
@@ -48,17 +48,17 @@ const Pieces={
                  if(num==7){
                      
                      return(
-                         [
+                         [[
                              `${String.fromCharCode(alpha)}${num-1}`,
                              `${String.fromCharCode(alpha)}${num-2}`,
-                            ]     
+                         ]]     
                             )
                     }
                  else{
                     return(
-                        [
+                        [[
                             `${String.fromCharCode(alpha)}${num-1}`,
-                           ]     
+                        ]]     
                     )
                  }
                 }}
@@ -67,21 +67,29 @@ const Pieces={
             id:{move(position){
                  let alpha=position[0].charCodeAt(0)
                  let num=parseInt(position[1])
-                 let rows=[]
-                 for(let i=0;i<8;i++){
-                    rows.push(`${String.fromCharCode(alpha)}${i+1}`)
-                    rows.push(`${String.fromCharCode(65+i)}${num}`)
-                 }     
-                 
-                 rows.filter((value,index,arr)=>{
-                    if(value==`${String.fromCharCode(alpha)}${num}`){
-                        arr.splice(index,1)
-                        return true;
-                    }
-                    return false;
-                })
 
-                 return(rows)
+                 let row1=[]
+                 for(let i=1;i<=8;i++){
+                     row1.push(`${String.fromCharCode(alpha)}${i+num}`)
+                    }     
+                    
+                let row2=[]
+                for(let i=1;i<=8;i++){
+                    row2.push(`${String.fromCharCode(alpha)}${num-i}`)
+                   }
+                
+                let row3=[]
+                for(let i=1;i<=8;i++){
+                    row3.push(`${String.fromCharCode(alpha+i)}${num}`)
+                   }
+
+                let row4=[]
+                for(let i=1;i<=8;i++){
+                    row4.push(`${String.fromCharCode(alpha-i)}${num}`)
+                   }
+
+                let pos=[row1,row2,row3,row4]
+                 return(pos)
                 }}
             },
     
@@ -89,48 +97,79 @@ const Pieces={
             id:{move(position){
                  let alpha=position[0].charCodeAt(0)
                  let num=parseInt(position[1])
-                 let pos=[]
-                 for(let i=0;i<8;i++){
-                    pos.push(`${String.fromCharCode(alpha+i)}${num+i}`)
-                    pos.push(`${String.fromCharCode(alpha-i)}${num-i}`)
-                    pos.push(`${String.fromCharCode(alpha+i)}${num-i}`)
-                    pos.push(`${String.fromCharCode(alpha-i)}${num+i}`)
-                 }     
                  
-                 pos.filter((value,index,arr)=>{
-                    if(value==`${String.fromCharCode(alpha)}${num}`){
-                        arr.splice(index,1)
-                        return true;
-                    }
-                    return false;
-                })
+                 let row1=[]
+                 for(let i=1;i<=8;i++){
+                    row1.push(`${String.fromCharCode(alpha+i)}${num+i}`)
+                    }     
+                    
+                let row2=[]
+                for(let i=1;i<=8;i++){
+                    row2.push(`${String.fromCharCode(alpha-i)}${num-i}`)
+                   }
+                
+                let row3=[]
+                for(let i=1;i<=8;i++){
+                    row3.push(`${String.fromCharCode(alpha+i)}${num-i}`)
+                   }
 
+                let row4=[]
+                for(let i=1;i<=8;i++){
+                    row4.push(`${String.fromCharCode(alpha-i)}${num+i}`)
+                   }
+
+                let pos=[row1,row2,row3,row4]
                  return(pos)
                 }}
+
             },
     
     Queen:{
             id:{move(position){
                  let alpha=position[0].charCodeAt(0)
                  let num=parseInt(position[1])
-                 let pos=[]
-                 for(let i=0;i<8;i++){
-                    pos.push(`${String.fromCharCode(alpha+i)}${num+i}`)
-                    pos.push(`${String.fromCharCode(alpha-i)}${num-i}`)
-                    pos.push(`${String.fromCharCode(alpha+i)}${num-i}`)
-                    pos.push(`${String.fromCharCode(alpha-i)}${num+i}`)
-                    pos.push(`${String.fromCharCode(alpha)}${i+1}`)
-                    pos.push(`${String.fromCharCode(65+i)}${num}`)
-                 }     
-                 
-                 pos.filter((value,index,arr)=>{
-                    if(value==`${String.fromCharCode(alpha)}${num}`){
-                        arr.splice(index,1)
-                        return true;
-                    }
-                    return false;
-                })
 
+                 let row1=[]
+                 for(let i=1;i<=8;i++){
+                     row1.push(`${String.fromCharCode(alpha)}${i+num}`)
+                    }     
+                    
+                let row2=[]
+                for(let i=1;i<=8;i++){
+                    row2.push(`${String.fromCharCode(alpha)}${num-i}`)
+                   }
+                
+                let row3=[]
+                for(let i=1;i<=8;i++){
+                    row3.push(`${String.fromCharCode(alpha+i)}${num}`)
+                   }
+
+                let row4=[]
+                for(let i=1;i<=8;i++){
+                    row4.push(`${String.fromCharCode(alpha-i)}${num}`)
+                   }
+                
+                 let row5=[]
+                 for(let i=1;i<=8;i++){
+                    row5.push(`${String.fromCharCode(alpha+i)}${num+i}`)
+                    }     
+                    
+                let row6=[]
+                for(let i=1;i<=8;i++){
+                    row6.push(`${String.fromCharCode(alpha-i)}${num-i}`)
+                   }
+                
+                let row7=[]
+                for(let i=1;i<=8;i++){
+                    row7.push(`${String.fromCharCode(alpha+i)}${num-i}`)
+                   }
+
+                let row8=[]
+                for(let i=1;i<=8;i++){
+                    row8.push(`${String.fromCharCode(alpha-i)}${num+i}`)
+                   }
+
+                let pos=[row1,row2,row3,row4,row5,row6,row7,row8]
                  return(pos)
                 }}
             },
@@ -140,7 +179,7 @@ const Pieces={
                  let alpha=position[0].charCodeAt(0)
                  let num=parseInt(position[1])
                  return(
-                    [
+                    [[
                         `${String.fromCharCode(alpha+1)}${num+1}`,
                         `${String.fromCharCode(alpha+1)}${num-1}`,
                         `${String.fromCharCode(alpha-1)}${num+1}`,
@@ -149,7 +188,7 @@ const Pieces={
                         `${String.fromCharCode(alpha-1)}${num}`,
                         `${String.fromCharCode(alpha)}${num+1}`,
                         `${String.fromCharCode(alpha)}${num-1}`,
-                    ]     
+                    ]]     
                  )
                 }}
             },

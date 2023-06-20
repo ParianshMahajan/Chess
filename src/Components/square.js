@@ -12,9 +12,11 @@ export default function Square(props){
 
 
     function button(e){
-        console.log(link[14],"   ",link);
             if(link==newlink){
                 props.movep(id,props.previd,props.prevlink);
+            }
+            else if(props.highlightPiece==newlink){
+                props.cutp(id,props.previd,props.prevlink);
             }
             else{
                 props.button(id,props.name,link)
@@ -34,6 +36,8 @@ export default function Square(props){
     if(link==newlink){
         imgClass="highlight-Piece"
     }
+
+    
 
 
 
