@@ -14,14 +14,16 @@ export default function SideBar(props){
 
     return(
         <div className={props.class}>
-            <ul className="listPieces">
-                <li>
-                    {(props.arr).map((e)=>{
-                        return(
-                        <img src={e} alt="" className="cutPieces" />
-                    )})}
-                </li>
-            </ul>
+            <div className="middle">
+                <ul className="listPieces">
+                    <li>
+                        {(props.arr).map((e)=>{
+                            return(
+                                <img src={e} alt="" className="cutPieces" />
+                                )})}
+                    </li>
+                </ul>
+            </div>
         </div>
     )
 }

@@ -4,21 +4,38 @@ body{
 
 
 
+
+
+
+
 .SideBarL{
     margin:2% 0% 0% 18%;
     float: left;
-    width:4.3%;
-    aspect-ratio:1/9.25 ;
-    background-color:rgb(26, 26, 26);
-    border: 9px rgb(0, 0, 0) solid;
+    width:5%;
+    aspect-ratio:1/8 ;
+    background-color: rgb(26, 26, 26);
+    box-shadow: -8px 8px 16px rgba(0, 0, 0, 0.63), inset -3px 3px 19px -6px rgba(255, 255, 255, 0.29);
+    border-radius:12px;
+    
 }
 .SideBarR{
     margin:-42% 18% 0% 0%;
     float: right;
-    width:4.3%;
-    aspect-ratio:1/9.25 ;
-    background-color:rgb(26, 26, 26);
-    border: 9px rgb(0, 0, 0) solid;
+    width:5%;
+    aspect-ratio:1/8 ;
+    background-color: rgb(26, 26, 26);
+    box-shadow: -8px 8px 16px rgba(0, 0, 0, 0.63), inset -3px 3px 19px -6px rgba(255, 255, 255, 0.29);
+    border-radius:12px;
+    
+}
+
+
+.middle{
+    margin:20%;
+    margin-left: 18.5%;
+    width:60%;
+    aspect-ratio:1/12.65 ;
+    border-radius:12px;
 }
 
 .listPieces{
@@ -28,9 +45,15 @@ body{
 }
 
 .cutPieces{
-    width:55%;
-    margin: 1% 0 0 22.5%;
+    width:70%;
+    margin: 1% 0 0 15%;
 }
+
+
+
+
+
+
 
 
 
@@ -44,6 +67,9 @@ body{
     padding-top:1% ;
     padding-right: .5%;
     padding-bottom: .3%;
+    box-shadow: -8px 8px 16px rgba(0, 0, 0, 0.63), inset -3px 3px 19px -6px rgba(255, 255, 255, 0.29);
+    border-radius:25px;
+    
     
 }
 
@@ -70,12 +96,15 @@ ul{
     flex-direction: column-reverse;
     margin-top: 5%;
     float: left;
-    margin-right: 3%;
+    width:5%;
+    margin-right:1% ;
+    aspect-ratio: 1/16.33       
 }
 
 
 .nums .Labels{
-    margin:253% 0 253% 0%; 
+    margin: auto;
+    
 }
 
 
@@ -119,13 +148,14 @@ ul{
     display: flex;
     margin:0% ;
     margin-top: 1.5%;
-    padding-left: 0%;
+    padding-left: 9.7%;
     padding-bottom: 3%;
+    padding-right: 7%;
 }
 
 .Alpha .Labels{
     text-align: center;
-    width: 11.6%;
+    margin: auto;
 }
 
 
