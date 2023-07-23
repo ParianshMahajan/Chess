@@ -20,23 +20,23 @@ export default function initial(position){
         }
         else if((position[0]=='A'||position[0]=='H')&&(position[1]==1||position[1]==8)){
             link= require(`../../Pieces/${color}Rook.png`)
-            piece="Rook"
+            piece=`${color}Rook`
         }
         else if((position[0]=='B'||position[0]=='G')&&(position[1]==1||position[1]==8)){
             link= require(`../../Pieces/${color}Knight.png`)
-            piece="Knight"
+            piece=`${color}Knight`
         }
         else if((position[0]=='C'||position[0]=='F')&&(position[1]==1||position[1]==8)){
             link= require(`../../Pieces/${color}Bishop.png`)
-            piece="Bishop"
+            piece=`${color}Bishop`
         }
         else if(position[0]=='D'&&(position[1]==1||position[1]==8)){
             link= require(`../../Pieces/${color}Queen.png`)
-            piece="Queen"
+            piece=`${color}Queen`
         }
         else if(position[0]=='E'&&(position[1]==1||position[1]==8)){
             link= require(`../../Pieces/${color}King.png`)
-            piece="King"
+            piece=`${color}King`
         }
         return([link,piece])
 }

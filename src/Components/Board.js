@@ -180,6 +180,7 @@ export default function Board(props){
                 if(pos==from){
                     // prev:: to move from
                     link=""
+                    name=""
                     update(pos,link,name)
                 }
 

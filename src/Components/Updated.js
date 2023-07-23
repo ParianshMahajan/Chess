@@ -20,7 +20,6 @@ for(let i=0;i<64;i++){
 
 
 
-
 function update(position,link,name){
     Position.forEach((e)=>{
         if(e.position==position){
@@ -48,6 +47,8 @@ function getname(pos){
         }})
     return(name) 
 }
+
+
 
 
 export {update,updated,getname}

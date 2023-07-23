@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 export default function SideBar(props){
     const[render,setRender]=useState([]);
     if(props.arr!=render){
-        console.log(props.arr,render);
         setRender((props.arr))
     }
 
