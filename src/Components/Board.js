@@ -51,6 +51,7 @@ export default function Board(props){
     const[off,setOff]=useState(0);
     const[previd,setPrev]=useState("Null");    //To send data
     const[prevlink,setPrevlink]=useState("Null");    //To send data
+    const[prevname,setPrevname]=useState("Null");    //To send data
 
     const[move,setMove]=useState("Null");
     const[from,setfrom]=useState("");
@@ -66,25 +67,26 @@ export default function Board(props){
     const[cut,setCut]=useState(0);
 
     function showButtons(id,name,link){
-        if(link[14]==turn){
+        if(name[0]==turn){
             sethighlight(button(id,name))
             setOff(1)
             setMove("Null")
             setfrom("Null")
             setPrev(id)
             setPrevlink(link)
+            setPrevname(name)
             setPiece(name)
             setCut(0)
         }
     }
 
-    function movep(id,id_prev,link){
-            if(link[14]==turn){
+    function movep(id,id_prev,link,name){
+            if(name[0]==turn){
 
-                if(link[14]=="W"){
+                if(name[0]=="W"){
                     setTurn("B")
                 }
-                else if(link[14]=="B"){
+                else if(name[0]=="B"){
                     setTurn("W")
                 }
 
@@ -99,13 +101,13 @@ export default function Board(props){
     
     
     
-    function cutp(id,id_prev,link){
-            if(link[14]==turn){
+    function cutp(id,id_prev,link,name){
+            if(name[0]==turn){
 
-                if(link[14]=="W"){
+                if(name[0]=="W"){
                     setTurn("B")
                 }
-                else if(link[14]=="B"){
+                else if(name[0]=="B"){
                     setTurn("W")
                 }
 
@@ -151,11 +153,11 @@ export default function Board(props){
                                 if(link==""){
                                     link=newlink
                                 }
-                                else if(turn=='W'&&link[14]=='B'){
+                                else if(turn=='W'&&name[0]=='B'){
                                     highlightPiece=newlink
                                     break;
                                 }
-                                else if(turn=="B"&&link[14]=='W'){
+                                else if(turn=="B"&&name[0]=='W'){
                                     highlightPiece=newlink
                                     break;
                                 }
@@ -170,7 +172,7 @@ export default function Board(props){
                 if(pos==move){
                     // Current :: to move
                     if(cut==1&&link!=target){
-                        props.cut(link);
+                        props.cut(name,link);
                         setCut(0);
                     }
                     link=target
@@ -194,9 +196,10 @@ export default function Board(props){
                         link={link}
                         name={name}
                         button={(id,name,link)=>showButtons(id,name,link)}
-                        movep={(id,id_prev,link)=>movep(id,id_prev,link)}
-                        cutp={(id,id_prev,link)=>cutp(id,id_prev,link)}
+                        movep={(id,id_prev,link,name)=>movep(id,id_prev,link,name)}
+                        cutp={(id,id_prev,link,name)=>cutp(id,id_prev,link,name)}
                         prevlink={prevlink}
+                        prevname={prevname}     
                         highlightPiece={highlightPiece}
                     />
                     </>

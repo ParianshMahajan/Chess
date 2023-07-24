@@ -13,10 +13,10 @@ export default function Square(props){
 
     function button(e){
             if(link==newlink){
-                props.movep(id,props.previd,props.prevlink);
+                props.movep(id,props.previd,props.prevlink,props.prevname);
             }
             else if(props.highlightPiece==newlink){
-                props.cutp(id,props.previd,props.prevlink);
+                props.cutp(id,props.previd,props.prevlink,props.prevname);
             }
             else{
                 props.button(id,props.name,link)

@@ -12,12 +12,12 @@ export default function App(){
     
     
 
-    function cut(link){
-        if(link[14]=="W"){
+    function cut(name,link){
+        if(name[0]=="W"){
             let newarr=[...WPieces,link]
             setWPieces(newarr);
         }
-        else if(link[14]=="B"){
+        else if(name[0]=="B"){
             let newarr=[...BPieces,link]
             setBPieces(newarr);
         }
@@ -27,7 +27,7 @@ export default function App(){
     return(
         <>
             <SideBar class={"SideBarL"} arr={WPieces}/>  
-            <Board cut={(link)=>cut(link)}/>
+            <Board cut={(name,link)=>cut(name,link)}/>
             <SideBar class={"SideBarR"}  arr={BPieces}/>
         </>
     )
