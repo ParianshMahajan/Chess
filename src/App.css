@@ -98,7 +98,10 @@ ul{
     float: left;
     width:5%;
     margin-right:1% ;
-    aspect-ratio: 1/16.33       
+    aspect-ratio: 1/16.33;
+    justify-content: space-evenly;
+    padding: 0%;
+    padding-left: 5%;
 }
 
 
@@ -107,6 +110,9 @@ ul{
     
 }
 
+.nums>.Labels{
+    width: 100%;
+}
 
 
 
@@ -144,19 +150,32 @@ ul{
     position: relative;
 }
 
+
+
+
+
+
+
 .Alpha{
     display: flex;
     margin:0% ;
+    padding: 0%;
     margin-top: 1.5%;
-    padding-left: 9.7%;
-    padding-bottom: 3%;
+    padding-left: 12.5%;
+    width: 80.7%;
     padding-right: 7%;
+    padding-bottom: 3%;
 }
 
 .Alpha .Labels{
     text-align: center;
     margin: auto;
 }
+
+
+
+
+
 
 
 .img-bttn{

@@ -47,6 +47,7 @@ export default function Board(props){
     
 
     let newlink=require("../Pieces/Highlight.png")
+    
     const[highlight,sethighlight]=useState([]);
     const[off,setOff]=useState(0);
     const[previd,setPrev]=useState("Null");    //To send data
@@ -65,6 +66,12 @@ export default function Board(props){
 
     //CUT
     const[cut,setCut]=useState(0);
+
+    
+    //CHECKMATE
+    const[check,setCheck]=useState(false);
+    
+
 
     function showButtons(id,name,link){
         if(name[0]==turn){
@@ -178,6 +185,11 @@ export default function Board(props){
                     link=target
                     name=piece
                     update(pos,link,name)
+
+
+                    //Verifycheck
+                    // button(pos,)
+
                 }
                 if(pos==from){
                     // prev:: to move from
