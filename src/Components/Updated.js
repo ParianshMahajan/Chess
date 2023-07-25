@@ -48,10 +48,30 @@ function getname(pos){
     return(name) 
 }
 
+function getWKing(){
+    let king=""
+    Position.forEach((e)=>{
+        if(e.name=="WKing"){
+            king=e.position
+        }
+    })
+    return(king) 
+}
+
+function getBKing(){
+    let king=""
+    Position.forEach((e)=>{
+        if(e.name=="BKing"){
+            king=e.position
+        }
+    })
+    return(king) 
+}
 
 
 
-export {update,updated,getname}
+
+export {update,updated,getname,getBKing,getWKing}
 
 
 

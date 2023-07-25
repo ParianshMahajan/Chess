@@ -1,8 +1,8 @@
 import Square from "./square"
 import initial from "./Const Data/initial";
-import button from "./Const Data/Button";
-import { useState } from "react";
-import { update,updated,getname } from "./Updated";
+import {button,verifycheck} from "./Const Data/Button";
+import { useEffect, useState } from "react";
+import { update,updated,getname, getWKing, getBKing } from "./Updated";
 
 
 
@@ -41,10 +41,12 @@ for(var i=1;i<=8;i++){
     row.push(i);
 }
 
-
-
 export default function Board(props){
     
+    
+    useEffect(()=>{
+
+    })
 
     let newlink=require("../Pieces/Highlight.png")
     
@@ -69,6 +71,7 @@ export default function Board(props){
 
     
     //CHECKMATE
+    const[once,setOnce]=useState(true);
     const[check,setCheck]=useState(false);
     
 
@@ -101,16 +104,12 @@ export default function Board(props){
                 else if(name[0]=="B"){
                     setTurn("W")
                 }
-
                 setOff(0)
                 setfrom(id_prev)
                 setMove(id)
                 setTarget(link)
                 setCut(0)
-                if(button(id,name)==true){
-                    setCheck(true)
-                }
-
+                
             }
     }
     
@@ -126,15 +125,11 @@ export default function Board(props){
                 else if(name[0]=="B"){
                     setTurn("W")
                 }
-
                 setOff(0)
                 setfrom(id_prev)
                 setMove(id)
                 setTarget(link)
                 setCut(1)
-                if(button(id,name)==true){
-                    setCheck(true)
-                }
             }
     }
 
@@ -197,9 +192,14 @@ export default function Board(props){
                     link=target
                     name=piece
                     update(pos,link,name)
-
-
+                    
                     //Verifycheck
+                    if(verifycheck(turn)===true){
+                        if(once){
+                            setCheck(true);
+                            setOnce(false);
+                        }
+                    }
 
                 }
                 if(pos==from){

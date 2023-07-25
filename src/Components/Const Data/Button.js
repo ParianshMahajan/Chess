@@ -1,6 +1,9 @@
+import { getBKing, getWKing, getname } from "../Updated"
 import Pieces from "./Pieces"
 
-export default function button(id,name){
+
+
+ function button(id,name){
     if(name=="WKnight"||name=="BKnight"){
         return(Pieces.Knight.id.move(id,name))
     }
@@ -26,3 +29,191 @@ export default function button(id,name){
         return([])
     }
 }
+
+
+
+
+
+const converter=(position,x,y)=>{
+    let alpha=position[0].charCodeAt(0)
+    let num=parseInt(position[1])
+    let newpos=`${String.fromCharCode(alpha+x)}${num+y}`;
+    return newpos;
+}
+
+
+ function verifycheck(turn){
+    //CHECK CONDITION
+    let position=""   
+    let color=""
+    if(turn=="B"){
+        position=getBKing()
+        color="W"
+    }
+    else if(turn=="W"){
+        position=getWKing()
+        color="B"
+    }
+
+
+    
+    //Pawns
+    if(turn=="B"){
+        if(getname(converter(position,-1,-1))==`WPawn`||getname(converter(position,1,-1))==`WPawn`){
+            return(true)   
+        }
+    }
+    else if(turn=="W"){
+       if(getname(converter(position,-1,1))==`BPawn`||getname(converter(position,1,1))==`BPawn`){
+            return(true)   
+       }
+    }
+
+
+
+
+    //Knights
+    let send=[
+        converter(position,2,1),
+        converter(position,2,-1),
+        converter(position,-2,1),
+        converter(position,-2,-1),
+        converter(position,1,2),
+        converter(position,1,-2),
+        converter(position,-1,2),
+        converter(position,-1,-2),
+    ];
+    for(let i in send){
+        let x=send[i];
+        if(getname(x)==`${color}Knight`||getname(x)==`${color}Knight`){
+            return(true)
+        }
+    }   
+
+
+
+
+    //Vertically up
+    for(let i=1;i<=8;i++){
+        let x=converter(position,0,i);
+        if(getname(x)!=""){
+            if(getname(x)==`${color}Queen`||getname(x)==`${color}Rook`){
+                return(true)
+            }
+            else{
+                break;
+            }
+        }
+    }     
+       
+
+    //Vertically Down
+    for(let i=1;i<=8;i++){
+        let x=converter(position,0,-i);
+        if(getname(x)!=""){
+            if(getname(x)==`${color}Queen`||getname(x)==`${color}Rook`){
+                return(true)
+            }
+            else{
+                break;
+            }
+        }
+     }
+   
+   //Horizontal Right
+   for(let i=1;i<=8;i++){
+       let x=converter(position,i,0);
+       if(getname(x)!=""){
+        if(getname(x)==`${color}Queen`||getname(x)==`${color}Rook`){
+            return(true)
+        }
+        else{
+            break;
+        }
+    }
+   }
+
+
+
+   //Horizontally left
+   for(let i=1;i<=8;i++){
+       let x=converter(position,-i,0);
+       if(getname(x)!=""){
+        if(getname(x)==`${color}Queen`||getname(x)==`${color}Rook`){
+            return(true)
+        }
+        else{
+            break;
+        }
+    }
+   }
+
+
+
+   //UPPER RIGHT
+    for(let i=1;i<=8;i++){
+       let x=converter(position,i,i);
+       if(getname(x)!=""){
+        if(getname(x)==`${color}Queen`||getname(x)==`${color}Bishop`){
+            return(true)
+        }
+        else{
+            break;
+        }
+    }
+   }    
+       
+   
+   //UPPER LEFT
+   for(let i=1;i<=8;i++){
+       let x=converter(position,-i,i);
+       if(getname(x)!=""){
+        if(getname(x)==`${color}Queen`||getname(x)==`${color}Bishop`){
+            return(true)
+        }
+        else{
+            break;
+        }
+    }
+   }
+   
+   
+   
+   //LOWER RIGHT
+   for(let i=1;i<=8;i++){
+        let x=converter(position,i,-i);
+        if(getname(x)!=""){
+        if(getname(x)==`${color}Queen`||getname(x)==`${color}Bishop`){
+            return(true)
+        }
+        else{
+            break;
+        }
+    }
+   }
+
+   
+   //LOWER LEFT
+   for(let i=1;i<=8;i++){
+       let x=converter(position,-i,-i);
+       if(getname(x)!=""){
+        if(getname(x)==`${color}Queen`||getname(x)==`${color}Bishop`){
+            return(true)
+        }
+        else{
+            break;
+        }
+    }
+   }
+
+
+
+
+
+ 
+
+
+}
+
+
+export {button,verifycheck}
