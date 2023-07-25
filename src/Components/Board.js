@@ -75,7 +75,12 @@ export default function Board(props){
 
     function showButtons(id,name,link){
         if(name[0]==turn){
-            sethighlight(button(id,name))
+            if(check){
+                sethighlight([])
+            }
+            else{
+                sethighlight(button(id,name))
+            }
             setOff(1)
             setMove("Null")
             setfrom("Null")
@@ -102,6 +107,10 @@ export default function Board(props){
                 setMove(id)
                 setTarget(link)
                 setCut(0)
+                if(button(id,name)==true){
+                    setCheck(true)
+                }
+
             }
     }
     
@@ -123,12 +132,15 @@ export default function Board(props){
                 setMove(id)
                 setTarget(link)
                 setCut(1)
+                if(button(id,name)==true){
+                    setCheck(true)
+                }
             }
     }
 
 
 
-
+    // console.log(check);
 
 
     return(
@@ -188,7 +200,6 @@ export default function Board(props){
 
 
                     //Verifycheck
-                    // button(pos,)
 
                 }
                 if(pos==from){
@@ -201,7 +212,7 @@ export default function Board(props){
 
                     return(
                     <>
-                    < Square
+                    <Square
                         classname={i.className}
                         position={i.id}
                         previd={previd}

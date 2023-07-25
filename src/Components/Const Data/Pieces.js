@@ -19,28 +19,45 @@ const converter=(position,x,y)=>{
 
 const Pieces={
     Knight:{
-            id:{move(position){
+            id:{move(position,name){
                  let alpha=position[0].charCodeAt(0)
                  let num=parseInt(position[1])
-                return(
-                    [
-                        [`${String.fromCharCode(alpha+2)}${num+1}`,
-                        `${String.fromCharCode(alpha+2)}${num-1}`,
-                        `${String.fromCharCode(alpha-2)}${num+1}`,
-                        `${String.fromCharCode(alpha-2)}${num-1}`,
-                        `${String.fromCharCode(alpha+1)}${num-2}`,
-                        `${String.fromCharCode(alpha-1)}${num-2}`,
-                        `${String.fromCharCode(alpha+1)}${num+2}`,
-                        `${String.fromCharCode(alpha-1)}${num+2}`,]
-                    ]     
-                )
+                 let send=[
+                  `${String.fromCharCode(alpha+2)}${num+1}`,
+                  `${String.fromCharCode(alpha+2)}${num-1}`,
+                  `${String.fromCharCode(alpha-2)}${num+1}`,
+                  `${String.fromCharCode(alpha-2)}${num-1}`,
+                  `${String.fromCharCode(alpha+1)}${num-2}`,
+                  `${String.fromCharCode(alpha-1)}${num-2}`,
+                  `${String.fromCharCode(alpha+1)}${num+2}`,
+                  `${String.fromCharCode(alpha-1)}${num+2}`
+                 ];
+
+
+
+
+                 //check
+                 let check=send.map(e=>{
+                  if((name[0]=="W"&& getname(e)=="BKing")||(name[0]=="B"&& getname(e)=="WKing")){
+                     return(true)  
+                  }
+                 })
+
+
+
+                 if(check[0]){
+                  return(true);
+                 }
+                 else{
+                    return([send])
+                 }
             }}
             },
     
 
 
     WPawn:{
-            id:{move(position){
+            id:{move(position,name){
                  let alpha=position[0].charCodeAt(0)
                  let num=parseInt(position[1])
                  let send=[]
@@ -72,7 +89,28 @@ const Pieces={
                         send.push(converter(position,0,1));
                     }
                  }
-                 return([send])
+
+
+
+
+
+
+
+                 //Check
+                 let check=send.map(e=>{
+                  if((name[0]=="W"&& getname(e)=="BKing")||(name[0]=="B"&& getname(e)=="WKing")){
+                     return(true)  
+                  }
+                 })
+
+
+                 if(check[0]){
+                  return(true);
+                 }
+                 else{
+                    return([send])
+                 }
+
                 }}
             },
     
@@ -80,7 +118,7 @@ const Pieces={
 
 
     BPawn:{
-            id:{move(position){
+            id:{move(position,name){
                  let alpha=position[0].charCodeAt(0)
                  let num=parseInt(position[1])
                  let send=[]
@@ -118,7 +156,21 @@ const Pieces={
 
 
 
-                 return([send])
+                 //check
+                 let check=send.map(e=>{
+                  if((name[0]=="W"&& getname(e)=="BKing")||(name[0]=="B"&& getname(e)=="WKing")){
+                     return(true)  
+                  }
+                 })
+
+
+
+                 if(check[0]){
+                  return(true);
+                 }
+                 else{
+                    return([send])
+                 }
                 }}
             },
 
@@ -129,9 +181,10 @@ const Pieces={
 
             
     Rook:{
-            id:{move(position){
+            id:{move(position,name){
                  let alpha=position[0].charCodeAt(0)
                  let num=parseInt(position[1])
+
 
 
 
@@ -140,7 +193,14 @@ const Pieces={
                  for(let i=1;i<=8;i++){
                     
                     //Stopping Condition
-                    let x=converter(position,0,i);
+                    let x=converter(position,0,i); 
+ 
+                    //CHECK
+                    if((name[0]=="W"&& getname(x)=="BKing")||(name[0]=="B"&& getname(x)=="WKing")){
+                       return(true)  
+                    }
+
+
                     if(getname(x)[0]==="B"||getname(x)[0]==="W"){
                        rowVU.push(x);
                        break;
@@ -148,6 +208,7 @@ const Pieces={
                     else{
                        rowVU.push(x)
                     }
+                    
                 }     
                     
 
@@ -157,6 +218,15 @@ const Pieces={
                 let rowVD=[]
                 for(let i=1;i<=8;i++){
                     let x=converter(position,0,-i);
+
+
+                    //CHECK
+                    if((name[0]=="W"&& getname(x)=="BKing")||(name[0]=="B"&& getname(x)=="WKing")){
+                     return(true)  
+                     }
+
+
+
                     if(getname(x)[0]==="B"||getname(x)[0]==="W"){
                        rowVD.push(x);
                        break;
@@ -172,6 +242,14 @@ const Pieces={
                 let rowHR=[]
                 for(let i=1;i<=8;i++){
                     let x=converter(position,i,0);
+
+                  
+                    //CHECK
+                    if((name[0]=="W"&& getname(x)=="BKing")||(name[0]=="B"&& getname(x)=="WKing")){
+                     return(true)  
+                    }
+
+
                     if(getname(x)[0]==="B"||getname(x)[0]==="W"){
                        rowHR.push(x);
                        break;
@@ -187,6 +265,13 @@ const Pieces={
                 let rowHL=[]
                 for(let i=1;i<=8;i++){
                     let x=converter(position,-i,0);
+
+                    //CHECK
+                    if((name[0]=="W"&& getname(x)=="BKing")||(name[0]=="B"&& getname(x)=="WKing")){
+                       return(true)  
+                    }
+
+
                     if(getname(x)[0]==="B"||getname(x)[0]==="W"){
                        rowHL.push(x);
                        break;
@@ -210,7 +295,7 @@ const Pieces={
 
 
     Bishop:{
-            id:{move(position){
+            id:{move(position,name){
                  let alpha=position[0].charCodeAt(0)
                  let num=parseInt(position[1])
                  
@@ -219,6 +304,20 @@ const Pieces={
                  let rowUR=[]
                  for(let i=1;i<=8;i++){
                     let x=converter(position,i,i);
+                    
+                    
+                    //CHECK
+                    if((name[0]=="W"&& getname(x)=="BKing")||(name[0]=="B"&& getname(x)=="WKing")){
+                       return(true)  
+                    }
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                     if(getname(x)[0]==="B"||getname(x)[0]==="W"){
                        rowUR.push(x);
                        break;
@@ -234,6 +333,20 @@ const Pieces={
                 for(let i=1;i<=8;i++){
                     rowUL.push(`${String.fromCharCode(alpha-i)}${num+i}`)
                     let x=converter(position,-i,i);
+                    
+                    
+                    //CHECK
+                    if((name[0]=="W"&& getname(x)=="BKing")||(name[0]=="B"&& getname(x)=="WKing")){
+                       return(true)  
+                    }
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                     if(getname(x)[0]==="B"||getname(x)[0]==="W"){
                        rowUL.push(x);
                        break;
@@ -249,6 +362,20 @@ const Pieces={
                 let rowLR=[]
                 for(let i=1;i<=8;i++){
                     let x=converter(position,i,-i);
+                    
+                    
+                    //CHECK
+                    if((name[0]=="W"&& getname(x)=="BKing")||(name[0]=="B"&& getname(x)=="WKing")){
+                       return(true)  
+                    }
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                     if(getname(x)[0]==="B"||getname(x)[0]==="W"){
                        rowLR.push(x);
                        break;
@@ -263,6 +390,20 @@ const Pieces={
                 let rowLL=[]
                 for(let i=1;i<=8;i++){
                     let x=converter(position,-i,-i);
+                    
+                    
+                    //CHECK
+                    if((name[0]=="W"&& getname(x)=="BKing")||(name[0]=="B"&& getname(x)=="WKing")){
+                       return(true)  
+                    }
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                     if(getname(x)[0]==="B"||getname(x)[0]==="W"){
                        rowLL.push(x);
                        break;
@@ -289,7 +430,7 @@ const Pieces={
 
 
     Queen:{
-            id:{move(position){
+            id:{move(position,name){
                  let alpha=position[0].charCodeAt(0)
                  let num=parseInt(position[1])
 
@@ -302,6 +443,20 @@ const Pieces={
                     
                     //Stopping Condition
                     let x=converter(position,0,i);
+                    
+                    
+                    //CHECK
+                    if((name[0]=="W"&& getname(x)=="BKing")||(name[0]=="B"&& getname(x)=="WKing")){
+                       return(true)  
+                    }
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                     if(getname(x)[0]==="B"||getname(x)[0]==="W"){
                        rowVU.push(x);
                        break;
@@ -318,6 +473,20 @@ const Pieces={
                 let rowVD=[]
                 for(let i=1;i<=8;i++){
                     let x=converter(position,0,-i);
+                    
+                    
+                    //CHECK
+                    if((name[0]=="W"&& getname(x)=="BKing")||(name[0]=="B"&& getname(x)=="WKing")){
+                       return(true)  
+                    }
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                     if(getname(x)[0]==="B"||getname(x)[0]==="W"){
                        rowVD.push(x);
                        break;
@@ -333,6 +502,20 @@ const Pieces={
                 let rowHR=[]
                 for(let i=1;i<=8;i++){
                     let x=converter(position,i,0);
+                    
+                    
+                    //CHECK
+                    if((name[0]=="W"&& getname(x)=="BKing")||(name[0]=="B"&& getname(x)=="WKing")){
+                       return(true)  
+                    }
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                     if(getname(x)[0]==="B"||getname(x)[0]==="W"){
                        rowHR.push(x);
                        break;
@@ -348,6 +531,20 @@ const Pieces={
                 let rowHL=[]
                 for(let i=1;i<=8;i++){
                     let x=converter(position,-i,0);
+                    
+                    
+                    //CHECK
+                    if((name[0]=="W"&& getname(x)=="BKing")||(name[0]=="B"&& getname(x)=="WKing")){
+                       return(true)  
+                    }
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                     if(getname(x)[0]==="B"||getname(x)[0]==="W"){
                        rowHL.push(x);
                        break;
@@ -363,6 +560,20 @@ const Pieces={
                  let rowUR=[]
                  for(let i=1;i<=8;i++){
                     let x=converter(position,i,i);
+                    
+                    
+                    //CHECK
+                    if((name[0]=="W"&& getname(x)=="BKing")||(name[0]=="B"&& getname(x)=="WKing")){
+                       return(true)  
+                    }
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                     if(getname(x)[0]==="B"||getname(x)[0]==="W"){
                        rowUR.push(x);
                        break;
@@ -378,6 +589,20 @@ const Pieces={
                 for(let i=1;i<=8;i++){
                     rowUL.push(`${String.fromCharCode(alpha-i)}${num+i}`)
                     let x=converter(position,-i,i);
+                    
+                    
+                    //CHECK
+                    if((name[0]=="W"&& getname(x)=="BKing")||(name[0]=="B"&& getname(x)=="WKing")){
+                       return(true)  
+                    }
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                     if(getname(x)[0]==="B"||getname(x)[0]==="W"){
                        rowUL.push(x);
                        break;
@@ -393,6 +618,20 @@ const Pieces={
                 let rowLR=[]
                 for(let i=1;i<=8;i++){
                     let x=converter(position,i,-i);
+                    
+                    
+                    //CHECK
+                    if((name[0]=="W"&& getname(x)=="BKing")||(name[0]=="B"&& getname(x)=="WKing")){
+                       return(true)  
+                    }
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                     if(getname(x)[0]==="B"||getname(x)[0]==="W"){
                        rowLR.push(x);
                        break;
@@ -407,6 +646,20 @@ const Pieces={
                 let rowLL=[]
                 for(let i=1;i<=8;i++){
                     let x=converter(position,-i,-i);
+                    
+                    
+                    //CHECK
+                    if((name[0]=="W"&& getname(x)=="BKing")||(name[0]=="B"&& getname(x)=="WKing")){
+                       return(true)  
+                    }
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                     if(getname(x)[0]==="B"||getname(x)[0]==="W"){
                        rowLL.push(x);
                        break;
@@ -427,7 +680,7 @@ const Pieces={
 
     King:{
             id:{
-                move(position){
+                move(position,name){
                 let alpha=position[0].charCodeAt(0)
                 let num=parseInt(position[1])
                 
