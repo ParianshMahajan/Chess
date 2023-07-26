@@ -2,8 +2,9 @@ import Square from "./square"
 import initial from "./Const Data/initial";
 import {button,verifycheck} from "./Const Data/Button";
 import { useEffect, useState } from "react";
-import { update,updated,getname, getWKing, getBKing } from "./Updated";
-
+import { update,updated,getname, getWKing, getBKing, Position } from "./Updated";
+import saveCheck from "./Check/Check";
+import { update2 } from "./Check/TempUpdate";
 
 
 let square=[]
@@ -45,7 +46,6 @@ export default function Board(props){
     
     
     useEffect(()=>{
-
     })
 
     let newlink=require("../Pieces/Highlight.png")
@@ -79,10 +79,10 @@ export default function Board(props){
     function showButtons(id,name,link){
         if(name[0]==turn){
             if(check){
-                sethighlight([])
+                sethighlight(saveCheck(id,name,turn))
             }
             else{
-                sethighlight(button(id,name))
+                sethighlight(saveCheck(id,name,turn))
             }
             setOff(1)
             setMove("Null")
@@ -192,6 +192,8 @@ export default function Board(props){
                     link=target
                     name=piece
                     update(pos,link,name)
+                    update2(pos,link,name)
+                    
                     
                     //Verifycheck
                     if(verifycheck(turn)===true){
@@ -207,6 +209,7 @@ export default function Board(props){
                     link=""
                     name=""
                     update(pos,link,name)
+                    update2(pos,link,name)
                 }
 
 

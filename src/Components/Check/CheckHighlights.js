@@ -1,4 +1,5 @@
-import { getname } from "../../Components/Updated"
+import { Position, getname } from "../../Components/Updated"
+import { testUpdate, stillCheck,Revert, getDet } from "./TempUpdate";
 
 
 
@@ -19,7 +20,7 @@ const converter=(position,x,y)=>{
 
 const Pieces={
     Knight:{
-            id:{move(position,Cname,Cid){
+            id:{move(position,turn){
                  let alpha=position[0].charCodeAt(0)
                  let num=parseInt(position[1])
                  let send=[]
@@ -35,16 +36,18 @@ const Pieces={
                  ];
                  
                  for(let i in possib){
-
-                  if(possib[i]===Cid){
-                     send.push(possib[i])
-                  }
-
-                  if(Cname=="WQueen"||Cname=="BQueen"){
-
-                  }
-                 }
-
+                  if(getDet(possib[i])[0]!="UD"){
+                     //Storing data of possib[i] in x
+                  let x=testUpdate(position,possib[i])
+                     if(stillCheck(turn)!==true){
+                        send.push(possib[i]);
+                        //Revert Back
+                        Revert(position,possib[i],x)
+                     }
+                     else{
+                        Revert(position,possib[i],x)
+                     }
+                 }}
                     return([send])
             }}
             },
@@ -52,9 +55,10 @@ const Pieces={
 
 
     WPawn:{
-            id:{move(position,name){
+            id:{move(position,turn){
                  let alpha=position[0].charCodeAt(0)
                  let num=parseInt(position[1])
+                 let possib=[]
                  let send=[]
 
 
@@ -63,27 +67,43 @@ const Pieces={
 
                  //Diagonal Cutting
                  if(getname(converter(position,1,1))[0]==='B'){
-                    send.push(converter(position,1,1))
+                    possib.push(converter(position,1,1))
                  }
                  if(getname(converter(position,-1,1))[0]==='B'){
-                    send.push(converter(position,-1,1))
+                    possib.push(converter(position,-1,1))
                  }
 
 
                  //Simple Moving
                  if(num==2){
                         if(getname(converter(position,0,1))==''){
-                            send.push(converter(position,0,1));
+                            possib.push(converter(position,0,1));
                         }
                         if(getname(converter(position,0,1))==''&&getname(converter(position,0,2))==''){
-                            send.push(converter(position,0,2));
+                            possib.push(converter(position,0,2));
                         }
                     }
                  else{
                     if(getname(converter(position,0,1))==''){
-                        send.push(converter(position,0,1));
+                        possib.push(converter(position,0,1));
                     }
                  }
+
+
+
+                 for(let i in possib){
+                  if(getDet(possib[i])[0]!="UD"){
+                     //Storing data of possib[i] in x
+                  let x=testUpdate(position,possib[i])
+                     if(stillCheck(turn)!==true){
+                        send.push(possib[i]);
+                        //Revert Back
+                        Revert(position,possib[i],x)
+                     }
+                     else{
+                        Revert(position,possib[i],x)
+                     }
+                 }}
 
 
 
@@ -96,9 +116,10 @@ const Pieces={
 
 
     BPawn:{
-            id:{move(position,name){
+            id:{move(position,turn){
                  let alpha=position[0].charCodeAt(0)
                  let num=parseInt(position[1])
+                 let possib=[]
                  let send=[]
                 //Enpassant
 
@@ -107,10 +128,10 @@ const Pieces={
 
                  //Diagonal Cutting
                  if(getname(converter(position,1,-1))[0]==='W'){
-                    send.push(converter(position,1,-1))
+                    possib.push(converter(position,1,-1))
                  }
                  if(getname(converter(position,-1,-1))[0]==='W'){
-                    send.push(converter(position,-1,-1))
+                    possib.push(converter(position,-1,-1))
                  }
 
 
@@ -118,20 +139,32 @@ const Pieces={
                  //Simple moving
                  if(num==7){
                     if(getname(converter(position,0,-1))==''){
-                        send.push(converter(position,0,-1));
+                        possib.push(converter(position,0,-1));
                     }
                     if(getname(converter(position,0,-1))==''&&getname(converter(position,0,-2))==''){
-                        send.push(converter(position,0,-2));
+                        possib.push(converter(position,0,-2));
                     }
                 }
                 else{
                     if(getname(converter(position,0,-1))==''){
-                        send.push(converter(position,0,-1));
+                        possib.push(converter(position,0,-1));
                     }
                 }
 
 
-
+                for(let i in possib){
+                  if(getDet(possib[i])[0]!="UD"){
+                     //Storing data of possib[i] in x
+                  let x=testUpdate(position,possib[i])
+                     if(stillCheck(turn)!==true){
+                        send.push(possib[i]);
+                        //Revert Back
+                        Revert(position,possib[i],x)
+                     }
+                     else{
+                        Revert(position,possib[i],x)
+                     }
+                 }}
 
 
                  
@@ -147,7 +180,7 @@ const Pieces={
 
             
     Rook:{
-            id:{move(position,name){
+            id:{move(position,turn){
                  let alpha=position[0].charCodeAt(0)
                  let num=parseInt(position[1])
 
@@ -217,8 +250,24 @@ const Pieces={
                 }
 
 
-                let pos=[rowVU,rowVD,rowHR,rowHL]
-                 return(pos)
+                let possib=[...rowVU,...rowVD,...rowHR,...rowHL]
+                let send=[]
+                for(let i in possib){
+                  if(getDet(possib[i])[0]!="UD"){
+                     //Storing data of possib[i] in x
+                  let x=testUpdate(position,possib[i])
+                     if(stillCheck(turn)!==true){
+                        send.push(possib[i]);
+                        //Revert Back
+                        Revert(position,possib[i],x)
+                     }
+                     else{
+                        Revert(position,possib[i],x)
+                     }
+                 }}
+
+
+                 return([send])
                 }}
             },
     
@@ -230,7 +279,7 @@ const Pieces={
 
 
     Bishop:{
-            id:{move(position,name){
+            id:{move(position,turn){
                  let alpha=position[0].charCodeAt(0)
                  let num=parseInt(position[1])
                  
@@ -294,8 +343,27 @@ const Pieces={
                 
                 
                 
-                let pos=[rowUR,rowLL,rowLR,rowUL]
-                 return(pos)
+                let possib=[...rowUR,...rowLL,...rowLR,...rowUL]
+                let send=[]
+                for(let i in possib){
+                  //Storing data of possib[i] in x
+                  if(getDet(possib[i])[0]!="UD"){
+
+                     let x=testUpdate(position,possib[i])
+                     // console.log(possib[i],stillCheck(turn),x);
+                     if(stillCheck(turn)!==true){
+                        send.push(possib[i]);
+                        //Revert Back
+                        Revert(position,possib[i],x)
+                     }
+                     else{
+                        Revert(position,possib[i],x)
+                     }
+                  }
+                 }
+
+
+                 return([send])
                 }}
 
             },
@@ -309,7 +377,7 @@ const Pieces={
 
 
     Queen:{
-            id:{move(position,name){
+            id:{move(position,turn){
                  let alpha=position[0].charCodeAt(0)
                  let num=parseInt(position[1])
 
@@ -436,8 +504,26 @@ const Pieces={
                     }
                 }
 
-                let pos=[rowVU,rowVD,rowHR,rowHL,rowUR,rowLL,rowLR,rowUL]
-                 return(pos)
+                let possib=[...rowVU,...rowVD,...rowHR,...rowHL,...rowUR,...rowLL,...rowLR,...rowUL]
+                let send=[]
+                for(let i in possib){
+                  //Storing data of possib[i] in x
+                  if(getDet(possib[i])[0]!="UD"){
+
+                     let x=testUpdate(position,possib[i])
+                     
+                     if(stillCheck(turn)!==true){
+                        send.push(possib[i]);
+                        //Revert Back
+                        Revert(position,possib[i],x)
+                     }
+                     else{
+                        Revert(position,possib[i],x)
+                     }
+                 }}
+
+
+                 return([send])
                 }}
             },
 
@@ -447,14 +533,12 @@ const Pieces={
 
     King:{
             id:{
-                move(position,name){
-                let alpha=position[0].charCodeAt(0)
-                let num=parseInt(position[1])
+                move(position,turn){
                 
 
                 //CHECKMATE CONDITION   
-                return(
-                    [[
+                
+                let possib= [
                         converter(position,1,0),
                         converter(position,-1,0),
                         converter(position,0,1),
@@ -463,8 +547,24 @@ const Pieces={
                         converter(position,1,-1),
                         converter(position,-1,-1),
                         converter(position,-1,1),
-                    ]]     
-                )
+                    ]     
+                  let send=[]
+                    for(let i in possib){
+                      //Storing data of possib[i] in x
+                      if(getDet(possib[i])[0]!="UD"){
+                        let x=testUpdate(position,possib[i])
+                         if(stillCheck(turn)!==true){
+                            send.push(possib[i]);
+                            //Revert Back
+                            Revert(position,possib[i],x)
+                         }
+                         else{
+                            Revert(position,possib[i],x)
+                         }
+                     }}
+    
+    
+                     return([send])
                 }}
             },
     

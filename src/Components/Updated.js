@@ -71,7 +71,7 @@ function getBKing(){
 
 
 
-export {update,updated,getname,getBKing,getWKing}
+export {update,updated,getname,getBKing,getWKing,Position}
 
 
 
