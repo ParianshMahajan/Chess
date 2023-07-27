@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { update,updated,getname, getWKing, getBKing, Position } from "./Updated";
 import saveCheck from "./Check/Check";
 import { update2 } from "./Check/TempUpdate";
+import { pawnP } from "./MiscFuncs";
 
 
 let square=[]
@@ -42,8 +43,9 @@ for(var i=1;i<=8;i++){
     row.push(i);
 }
 
-export default function Board(props){
-    
+
+
+export default function Board(props){    
     
     useEffect(()=>{
     })
@@ -74,15 +76,19 @@ export default function Board(props){
     const[once,setOnce]=useState(true);
     const[check,setCheck]=useState(false);
     
-
+    //Pawn Prom.....
+    const[prom,setProm]=useState(false);
+    
 
     function showButtons(id,name,link){
         if(name[0]==turn){
             if(check){
                 sethighlight(saveCheck(id,name,turn))
+                    // console.log(saveCheck(id,name,turn));
             }
             else{
-                sethighlight(saveCheck(id,name,turn))
+                    // console.log(saveCheck(id,name,turn));
+                    sethighlight(saveCheck(id,name,turn))
             }
             setOff(1)
             setMove("Null")
@@ -95,14 +101,19 @@ export default function Board(props){
         }
     }
 
+
+
+    //On Click B4 Updating
     function movep(id,id_prev,link,name){
             if(name[0]==turn){
 
                 if(name[0]=="W"){
                     setTurn("B")
+                    setProm(pawnP(name,id))
                 }
                 else if(name[0]=="B"){
                     setTurn("W")
+                    setProm(pawnP(name,id))
                 }
                 setOff(0)
                 setfrom(id_prev)
@@ -149,6 +160,9 @@ export default function Board(props){
             </ul>
 
 
+
+
+
             {/* Board */}
             <ul className='list'>
                 {square.map((i)=>{
@@ -189,8 +203,16 @@ export default function Board(props){
                         props.cut(name,link);
                         setCut(0);
                     }
-                    link=target
-                    name=piece
+                    if(!prom){
+                        link=target
+                        name=piece
+                    }
+                    else if(prom){
+                        props.prom(prom)
+                        let data=props.promData
+                        link=data.link
+                        name=data.piece
+                    }
                     update(pos,link,name)
                     update2(pos,link,name)
                     
@@ -231,6 +253,9 @@ export default function Board(props){
                     </>
                 )})}
             </ul>
+
+
+
 
 
 

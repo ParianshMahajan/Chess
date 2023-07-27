@@ -24,7 +24,7 @@ const Pieces={
                  let alpha=position[0].charCodeAt(0)
                  let num=parseInt(position[1])
                  let send=[]
-                 let possib=[
+                 let temp=[
                   `${String.fromCharCode(alpha+2)}${num+1}`,
                   `${String.fromCharCode(alpha+2)}${num-1}`,
                   `${String.fromCharCode(alpha-2)}${num+1}`,
@@ -35,12 +35,37 @@ const Pieces={
                   `${String.fromCharCode(alpha-1)}${num+2}`
                  ];
                  
+                 //Removing same colour options
+                 let color=""
+                 if(turn=="B"){
+                     color="W"
+                 }
+                 else if(turn=="W"){
+                     color="B"
+                 }
+
+                 let possib=[]
+                 for(let i in temp){
+                  if((getname(temp[i])[0]===color)||(getname(temp[i])==="")){
+                     possib.push(temp[i])
+                  }
+                 }
+
+                 //Making possib unique
+                 possib=[...new Set(possib)]
+
+
+
+
                  for(let i in possib){
                   if(getDet(possib[i])[0]!="UD"){
                      //Storing data of possib[i] in x
                   let x=testUpdate(position,possib[i])
                      if(stillCheck(turn)!==true){
-                        send.push(possib[i]);
+                       
+                           send.push(possib[i]);
+                        
+
                         //Revert Back
                         Revert(position,possib[i],x)
                      }
@@ -58,7 +83,7 @@ const Pieces={
             id:{move(position,turn){
                  let alpha=position[0].charCodeAt(0)
                  let num=parseInt(position[1])
-                 let possib=[]
+                 let temp=[]
                  let send=[]
 
 
@@ -67,28 +92,48 @@ const Pieces={
 
                  //Diagonal Cutting
                  if(getname(converter(position,1,1))[0]==='B'){
-                    possib.push(converter(position,1,1))
+                    temp.push(converter(position,1,1))
                  }
                  if(getname(converter(position,-1,1))[0]==='B'){
-                    possib.push(converter(position,-1,1))
+                    temp.push(converter(position,-1,1))
                  }
 
 
                  //Simple Moving
                  if(num==2){
                         if(getname(converter(position,0,1))==''){
-                            possib.push(converter(position,0,1));
+                            temp.push(converter(position,0,1));
                         }
                         if(getname(converter(position,0,1))==''&&getname(converter(position,0,2))==''){
-                            possib.push(converter(position,0,2));
+                            temp.push(converter(position,0,2));
                         }
                     }
                  else{
                     if(getname(converter(position,0,1))==''){
-                        possib.push(converter(position,0,1));
+                        temp.push(converter(position,0,1));
                     }
                  }
 
+
+                 //Removing same colour options
+                 let color=""
+                 if(turn=="B"){
+                     color="W"
+                 }
+                 else if(turn=="W"){
+                     color="B"
+                 }
+
+                 let possib=[]
+                 for(let i in temp){
+                  if((getname(temp[i])[0]===color)||(getname(temp[i])==="")){
+                     possib.push(temp[i])
+                  }
+                 }
+
+                 //Making possib unique
+                 possib=[...new Set(possib)]
+                 
 
 
                  for(let i in possib){
@@ -119,7 +164,7 @@ const Pieces={
             id:{move(position,turn){
                  let alpha=position[0].charCodeAt(0)
                  let num=parseInt(position[1])
-                 let possib=[]
+                 let temp=[]
                  let send=[]
                 //Enpassant
 
@@ -128,10 +173,10 @@ const Pieces={
 
                  //Diagonal Cutting
                  if(getname(converter(position,1,-1))[0]==='W'){
-                    possib.push(converter(position,1,-1))
+                    temp.push(converter(position,1,-1))
                  }
                  if(getname(converter(position,-1,-1))[0]==='W'){
-                    possib.push(converter(position,-1,-1))
+                    temp.push(converter(position,-1,-1))
                  }
 
 
@@ -139,17 +184,41 @@ const Pieces={
                  //Simple moving
                  if(num==7){
                     if(getname(converter(position,0,-1))==''){
-                        possib.push(converter(position,0,-1));
+                        temp.push(converter(position,0,-1));
                     }
                     if(getname(converter(position,0,-1))==''&&getname(converter(position,0,-2))==''){
-                        possib.push(converter(position,0,-2));
+                        temp.push(converter(position,0,-2));
                     }
                 }
                 else{
                     if(getname(converter(position,0,-1))==''){
-                        possib.push(converter(position,0,-1));
+                        temp.push(converter(position,0,-1));
                     }
                 }
+
+
+
+
+                 //Removing same colour options
+                 let color=""
+                 if(turn=="B"){
+                     color="W"
+                 }
+                 else if(turn=="W"){
+                     color="B"
+                 }
+
+                 let possib=[]
+                 for(let i in temp){
+                  if((getname(temp[i])[0]===color)||(getname(temp[i])==="")){
+                     possib.push(temp[i])
+                  }
+                 }
+
+                 //Making possib unique
+                 possib=[...new Set(possib)]
+
+
 
 
                 for(let i in possib){
@@ -250,7 +319,30 @@ const Pieces={
                 }
 
 
-                let possib=[...rowVU,...rowVD,...rowHR,...rowHL]
+                let temp=[...rowVU,...rowVD,...rowHR,...rowHL]
+
+
+                 //Removing same colour options
+                 let color=""
+                 if(turn=="B"){
+                     color="W"
+                 }
+                 else if(turn=="W"){
+                     color="B"
+                 }
+
+                 let possib=[]
+                 for(let i in temp){
+                  if((getname(temp[i])[0]===color)||(getname(temp[i])==="")){
+                     possib.push(temp[i])
+                  }
+                 }
+
+                 //Making possib unique
+                 possib=[...new Set(possib)]
+                
+
+
                 let send=[]
                 for(let i in possib){
                   if(getDet(possib[i])[0]!="UD"){
@@ -343,7 +435,30 @@ const Pieces={
                 
                 
                 
-                let possib=[...rowUR,...rowLL,...rowLR,...rowUL]
+                let temp=[...rowUR,...rowLL,...rowLR,...rowUL]
+               
+                 //Removing same colour options
+                 let color=""
+                 if(turn=="B"){
+                     color="W"
+                 }
+                 else if(turn=="W"){
+                     color="B"
+                 }
+
+                 let possib=[]
+                 for(let i in temp){
+                  if((getname(temp[i])[0]===color)||(getname(temp[i])==="")){
+                     possib.push(temp[i])
+                  }
+                 }
+
+                 //Making possib unique
+                 possib=[...new Set(possib)]
+               
+               
+               
+               
                 let send=[]
                 for(let i in possib){
                   //Storing data of possib[i] in x
@@ -504,7 +619,29 @@ const Pieces={
                     }
                 }
 
-                let possib=[...rowVU,...rowVD,...rowHR,...rowHL,...rowUR,...rowLL,...rowLR,...rowUL]
+                let temp=[...rowVU,...rowVD,...rowHR,...rowHL,...rowUR,...rowLL,...rowLR,...rowUL]
+
+
+                 //Removing same colour options
+                 let color=""
+                 if(turn=="B"){
+                     color="W"
+                 }
+                 else if(turn=="W"){
+                     color="B"
+                 }
+
+                 let possib=[]
+                 for(let i in temp){
+                  if((getname(temp[i])[0]===color)||(getname(temp[i])==="")){
+                     possib.push(temp[i])
+                  }
+                 }
+
+                 //Making possib unique
+                 possib=[...new Set(possib)]
+
+
                 let send=[]
                 for(let i in possib){
                   //Storing data of possib[i] in x
@@ -538,7 +675,7 @@ const Pieces={
 
                 //CHECKMATE CONDITION   
                 
-                let possib= [
+                let temp= [
                         converter(position,1,0),
                         converter(position,-1,0),
                         converter(position,0,1),
@@ -547,7 +684,30 @@ const Pieces={
                         converter(position,1,-1),
                         converter(position,-1,-1),
                         converter(position,-1,1),
-                    ]     
+                    ]  
+                    
+                    
+                 //Removing same colour options
+                 let color=""
+                 if(turn=="B"){
+                     color="W"
+                 }
+                 else if(turn=="W"){
+                     color="B"
+                 }
+
+                 let possib=[]
+                 for(let i in temp){
+                  if((getname(temp[i])[0]===color)||(getname(temp[i])==="")){
+                     possib.push(temp[i])
+                  }
+                 }
+
+                 //Making possib unique
+                 possib=[...new Set(possib)]
+
+
+
                   let send=[]
                     for(let i in possib){
                       //Storing data of possib[i] in x

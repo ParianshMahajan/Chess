@@ -9,6 +9,10 @@ export default function App(){
 
     const [BPieces,setBPieces]=useState([]);
     const [WPieces,setWPieces]=useState([]);
+
+    //promotion
+    const [promShow,setPromShow]=useState(false);
+    const [promData,setPromData]=useState({});
     
     
 
@@ -26,8 +30,19 @@ export default function App(){
 
     return(
         <>
+            {promShow &&(
+                <div></div>
+            )}
+            
             <SideBar class={"SideBarL"} arr={WPieces}/>  
-            <Board cut={(name,link)=>cut(name,link)}/>
+            
+            <Board  
+                cut={(name,link)=>cut(name,link)}  
+                prom={(x)=>setPromShow(x)} 
+                promData={promData}
+            />
+            
+            
             <SideBar class={"SideBarR"}  arr={BPieces}/>
         </>
     )
