@@ -3,6 +3,7 @@
 const pawnP=(name,id)=>{
     let num=parseInt(id[1])
     if(name==="WPawn"){
+        console.log("yayy",num);
         if(num===8){
             return true;
         }

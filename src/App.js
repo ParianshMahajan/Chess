@@ -13,7 +13,8 @@ export default function App(){
 
     //promotion
     const [promShow,setPromShow]=useState(false);
-    const [promData,setPromData]=useState({});
+    const [turn,setTurn]=useState("");
+    const [promData,setPromData]=useState({link:"",name:""});
     
     
 
@@ -33,8 +34,9 @@ export default function App(){
         <>
             {promShow &&(
                 <PawnProm 
-                    showPop={(x)=>setPromShow(x)}
-                    
+                    showPop={()=>setPromShow(false)}
+                    setData={(x)=>setPromData(x)}
+                    turn={turn}
                 />
             )}
             
@@ -42,7 +44,7 @@ export default function App(){
             
             <Board  
                 cut={(name,link)=>cut(name,link)}  
-                prom={(x)=>setPromShow(x)} 
+                prom={(x,turn)=>{setPromShow(x);setTurn(turn)}} 
                 promData={promData}
             />
             

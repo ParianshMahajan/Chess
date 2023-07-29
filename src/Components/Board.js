@@ -132,9 +132,11 @@ export default function Board(props){
 
                 if(name[0]=="W"){
                     setTurn("B")
+                    setProm(pawnP(name,id))
                 }
                 else if(name[0]=="B"){
                     setTurn("W")
+                    setProm(pawnP(name,id))
                 }
                 setOff(0)
                 setfrom(id_prev)
@@ -208,10 +210,13 @@ export default function Board(props){
                         name=piece
                     }
                     else if(prom){
-                        props.prom(prom)
+                        props.prom(prom,turn)
                         let data=props.promData
-                        link=data.link
-                        name=turn+data.piece
+                        console.log(data);
+                        if(data.link!==""){
+                            link=data.link
+                            name=data.piece
+                        }
                     }
                     update(pos,link,name)
                     update2(pos,link,name)
