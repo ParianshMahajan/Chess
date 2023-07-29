@@ -2,6 +2,7 @@ import Board from "./Components/Board";
 import './App.css'
 import SideBar from "./Components/SideBars";
 import { useState } from "react";
+import PawnProm from "./Popups/PawnProm";
 
 
 
@@ -31,7 +32,10 @@ export default function App(){
     return(
         <>
             {promShow &&(
-                <div></div>
+                <PawnProm 
+                    showPop={(x)=>setPromShow(x)}
+                    
+                />
             )}
             
             <SideBar class={"SideBarL"} arr={WPieces}/>  

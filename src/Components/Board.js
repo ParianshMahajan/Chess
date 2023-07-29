@@ -211,7 +211,7 @@ export default function Board(props){
                         props.prom(prom)
                         let data=props.promData
                         link=data.link
-                        name=data.piece
+                        name=turn+data.piece
                     }
                     update(pos,link,name)
                     update2(pos,link,name)
