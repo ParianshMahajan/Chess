@@ -34,7 +34,6 @@ const PawnProm = (props) => {
                 </div>
                 )
             }
-            
             </div>
             
             
