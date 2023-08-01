@@ -36,7 +36,6 @@ const PawnProm = (props) => {
             }
             </div>
             
-            
             )}
             
             export default PawnProm
